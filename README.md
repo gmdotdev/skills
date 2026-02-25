@@ -1,6 +1,26 @@
 # gmdotdev/skills
 
-Curated AI coding agent skills for [OpenCode](https://opencode.ai) and compatible skill loaders.
+Curated AI coding agent skills for [skills.sh](https://skills.sh)-compatible agents.
+
+## Available Skills
+
+| Skill | Description |
+|-------|-------------|
+| [cobra-cli](skills/cobra-cli/) | Cobra CLI scaffolding and best practices for Go |
+
+## Installation
+
+Install any skill with the [`skills` CLI](https://skills.sh/docs/cli):
+
+```bash
+npx skills add gmdotdev/skills
+```
+
+Or install a specific skill:
+
+```bash
+npx skills add gmdotdev/skills/cobra-cli
+```
 
 ## Structure
 
@@ -9,21 +29,6 @@ skills/
 └── cobra-cli/         # Cobra CLI scaffolding and best practices
     ├── SKILL.md       # Primary skill definition (loaded on activation)
     └── references/    # Detailed reference docs (loaded on demand)
-```
-
-## Installation
-
-Using the OpenCode skill installer:
-
-```
-/install gmdotdev/skills/cobra-cli
-```
-
-Or clone and symlink:
-
-```bash
-git clone https://github.com/gmdotdev/skills.git
-ln -s $(pwd)/skills/skills/cobra-cli ~/.agents/skills/cobra-cli
 ```
 
 ## Adding Skills
