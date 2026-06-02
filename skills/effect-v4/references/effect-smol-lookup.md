@@ -23,6 +23,7 @@ Use the current `effect-smol` codebase as the source of truth for Effect v4 APIs
 ```bash
 # service patterns
 grep -R "Context.Service" -n packages ai-docs/src .patterns
+grep -R "make: Effect.gen\|static readonly layer\|static readonly layerNoDeps" -n packages ai-docs/src .patterns
 
 # generator and function patterns
 grep -R "Effect.fnUntraced\|Effect.fn(\|Effect.gen" -n packages/effect/src packages/effect/test ai-docs/src

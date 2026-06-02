@@ -136,18 +136,11 @@ Use `Effect.fn("Domain.operation")` when the name is useful for tracing and diag
 
 ## Services and Layers
 
-Prefer class-based services using `Context.Service`:
+Prefer class-based services using `Context.Service`. Current Effect v4 examples commonly define service construction on the class with `make`, then expose static layers from that constructor.
 
 ```ts
-export interface Users {
-  readonly findById: (id: UserId) => Effect.Effect<User, UserNotFound>
-}
-
-export class Users extends Context.Service<Users, Users>()("@app/Users") {}
-
-export const UsersLive = Layer.effect(
-  Users,
-  Effect.gen(function* () {
+export class Users extends Context.Service<Users>()("@app/Users", {
+  make: Effect.gen(function* () {
     const db = yield* Database
 
     const findById = Effect.fn("Users.findById")(function* (id: UserId) {
@@ -156,16 +149,26 @@ export const UsersLive = Layer.effect(
       return User.make(row)
     })
 
-    return Users.of({ findById })
+    return { findById } as const
   })
-)
+}) {
+  static readonly layerNoDeps = Layer.effect(this, this.make)
+
+  static readonly layer = this.layerNoDeps.pipe(
+    Layer.provide(Database.layer)
+  )
+}
 ```
 
 Guidelines:
 
 - Use stable, globally unique service identifiers such as `@app/Users`.
-- Pull dependencies once in the layer.
-- Keep service method `R` types small, usually `never`.
+- Put the constructor effect in `static make` / the `make` option when using the single-generic `Context.Service<Service>()("id", { make })` form.
+- Pull dependencies once during construction, not inside every method call.
+- Keep service method `R` types small, usually `never`; dependencies should be supplied by layers.
+- Use `static readonly layerNoDeps` for the raw service layer that still requires dependencies.
+- Use `static readonly layer` for the fully wired default layer when there is an obvious dependency set.
+- Name environment-specific variants by purpose, such as `layerTest`, `layerInMemory`, `layerRemote`, or a layer factory like `layer(config)`; avoid defaulting to dated `Live` suffixes unless the target repo already uses them.
 - Use `Layer.succeed` or `Layer.sync` for static/test implementations.
 - Use `Layer.effect` for effectful setup.
 - Use scoped layers or `Effect.acquireRelease` when cleanup is required.
