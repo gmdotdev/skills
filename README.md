@@ -35,6 +35,8 @@ skills/
 
 Each skill lives in `skills/<skill-name>/` and must contain a `SKILL.md` with YAML frontmatter (`name`, `description`). See any existing skill for the pattern.
 
+For contribution workflow notes, see [`CONTRIBUTING.md`](CONTRIBUTING.md).
+
 ## License
 
 MIT
