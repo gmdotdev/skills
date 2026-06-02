@@ -8,6 +8,7 @@ Curated AI coding agent skills for [skills.sh](https://skills.sh)-compatible age
 |-------|-------------|
 | [cobra-cli](skills/cobra-cli/) | Cobra CLI scaffolding and best practices for Go |
 | [effect-v4](skills/effect-v4/) | Current Effect v4 / effect-smol TypeScript patterns |
+| [worktrunk](skills/worktrunk/) | Git worktree workflow with the Worktrunk `wt` CLI |
 
 ## Installation
 
@@ -23,6 +24,8 @@ Or install a specific skill:
 npx skills add gmdotdev/skills/cobra-cli
 # or
 npx skills add gmdotdev/skills/effect-v4
+# or
+npx skills add gmdotdev/skills/worktrunk
 ```
 
 ## Structure
@@ -32,7 +35,10 @@ skills/
 ├── cobra-cli/         # Cobra CLI scaffolding and best practices
 │   ├── SKILL.md       # Primary skill definition (loaded on activation)
 │   └── references/    # Detailed reference docs (loaded on demand)
-└── effect-v4/         # Current Effect v4 / effect-smol TypeScript patterns
+├── effect-v4/         # Current Effect v4 / effect-smol TypeScript patterns
+│   ├── SKILL.md
+│   └── references/
+└── worktrunk/         # Git worktree workflow with wt
     ├── SKILL.md
     └── references/
 ```
