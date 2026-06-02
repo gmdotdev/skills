@@ -22,23 +22,23 @@ Use the current `effect-smol` codebase as the source of truth for Effect v4 APIs
 
 ```bash
 # service patterns
-grep -R "Context.Service" -n packages ai-docs/src .patterns
-grep -R "make: Effect.gen\|static readonly layer\|static readonly layerNoDeps" -n packages ai-docs/src .patterns
+rg -n 'Context.Service' packages ai-docs/src .patterns
+rg -n 'make: Effect.gen|static readonly layer|static readonly layerNoDeps' packages ai-docs/src .patterns
 
 # generator and function patterns
-grep -R "Effect.fnUntraced\|Effect.fn(\|Effect.gen" -n packages/effect/src packages/effect/test ai-docs/src
+rg -n 'Effect.fnUntraced|Effect.fn\(|Effect.gen' packages/effect/src packages/effect/test ai-docs/src
 
 # Schema modeling
-grep -R "Schema.Class\|Schema.TaggedErrorClass\|Schema.brand" -n packages ai-docs/src
+rg -n 'Schema.Class|Schema.TaggedErrorClass|Schema.brand' packages ai-docs/src
 
 # HTTP/RPC APIs
-grep -R "HttpApi\|HttpApiGroup\|RpcGroup\|RpcServer" -n packages ai-docs/src
+rg -n 'HttpApi|HttpApiGroup|RpcGroup|RpcServer' packages ai-docs/src
 
 # Effect tests
-grep -R "it.effect\|@effect/vitest\|TestClock" -n packages ai-docs/src .patterns
+rg -n 'it.effect|@effect/vitest|TestClock' packages ai-docs/src .patterns
 ```
 
-Prefer a structural search tool if the target environment has one, but simple text search is enough for initial discovery.
+Prefer `rg` for text search. Use a structural search tool only when syntax-aware matching is needed.
 
 ## effect-smol Validation Hints
 
