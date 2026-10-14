@@ -43,10 +43,9 @@ skills/
 
 4. Keep `SKILL.md` focused on activation-time guidance. Put long examples, API details, troubleshooting, and expanded recipes in `references/*.md`.
 
-5. Update `README.md`:
-   - add the skill to the Available Skills table
-   - update the tree in the Structure section if needed
-   - keep installation examples accurate
+5. Update `README.md` (the Skills table) and the skills.gm.dev catalog.
+   Framework skills that their maintainers publish are not copied here: list
+   them under "Upstream skills we use" instead.
 
 6. Validate the skill structure:
 
